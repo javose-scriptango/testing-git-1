@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
 //functions
 
 //ev
-    display.html(param_de_classe);
+    //display.html(param_de_classe);
 
 
  
