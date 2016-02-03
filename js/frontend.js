@@ -16,7 +16,7 @@ jQuery(document).ready(function ($) {
     test.param_de_classe_prive = "big,oi"
     var param_de_classe = test.param_de_classe_prive;
 
-    truc = "dffd";
+   
 //functions
             function resolve(res) {
                 console.log(res);
@@ -31,14 +31,22 @@ jQuery(document).ready(function ($) {
 
 
 var promise = new Promise(function(resolve, reject) {
- truc = "chose";
+   jQuery.ajax({
+            type: "GET",
+            url: 'http://localhost:8888/php/frontend.php',
+            data: {}
+        }).done(function (msg) { 
+            
+            var truc = eval('(' + msg + ')')
+        
 
-  if (truc) {
-    resolve("Ces trucs ont marché !");
+  if (typeof truc == 'object') {
+    resolve(truc);
   }
   else {
     reject(Error("Ça a foiré"));
   }
+  });
 });
 
 promise.then(function(result) {
