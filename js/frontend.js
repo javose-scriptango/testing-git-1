@@ -16,13 +16,39 @@ jQuery(document).ready(function ($) {
     test.param_de_classe_prive = "big,oi"
     var param_de_classe = test.param_de_classe_prive;
 
+    truc = "dffd";
 //functions
+            function resolve(res) {
+                console.log(res);
+            }
+
+    function reject(err) {
+        console.log(err);
+    }
 
 //ev
-    //display.html(param_de_classe);
+    display.html(param_de_classe);
 
 
- 
+var promise = new Promise(function(resolve, reject) {
+ truc = "chose";
+
+  if (truc) {
+    resolve("Ces trucs ont marché !");
+  }
+  else {
+    reject(Error("Ça a foiré"));
+  }
+});
+
+promise.then(function(result) {
+  console.log(result); // "Ces trucs ont marché !"
+}, function(err) {
+  console.log(err); // Error: "Ça a foiré"
+});
+
+
+
 
 
 })
