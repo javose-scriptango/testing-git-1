@@ -153,14 +153,36 @@ Outils.prototype = {
     supprimer_loader: function () {
         image_loader.css({"display": "none"});
     },
-    //testet validité url
+    //tester validité url
     checkURL: function (value) {
         var urlregex = new RegExp("^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$");
         if (urlregex.test(value)) {
             return (true);
         }
         return (false);
+    },
+    //recuperer racine serveur
+    getBaseURL : function() {
+    
+    var url = location.href;
+    var baseURL = url.substring(0, url.indexOf('/', 14));
+
+    if (baseURL.indexOf('http://localhost') != -1) {
+        
+        var pathname = location.pathname;
+        var index1 = url.indexOf(pathname);
+        var index2 = url.indexOf("/", index1 + 1);
+        var baseLocalUrl = url.substr(0, index2);
+
+        return baseLocalUrl + '/';
     }
+    else {
+       
+         return baseURL + '/';
+         
+    }
+
+}
 
 //end
 };
